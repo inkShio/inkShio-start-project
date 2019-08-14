@@ -1,0 +1,8 @@
+/*
+	Функция процентного соотношения
+*/
+
+@function PercentageOf($a, $b, $Percent: 100%)
+{
+	@return $a / $b * $Percent;
+}
