@@ -3,5 +3,7 @@
 @import "helpers/functions";
 @import "helpers/mixins";
 @import "helpers/placeholders";
-@import "../blocks/components/components";
-@import "../blocks/modules/modules";
+@import "base/reset";
+@import "../blocks/components/**/*";
+@import "../blocks/modules/modules/**/*";
+@import "libs/*";
