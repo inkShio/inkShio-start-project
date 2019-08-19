@@ -31,9 +31,15 @@ const paths = {
       watch: "./app/js/libs/*.js"
     },
     scripts: {
-      app: "./app/js/scripts/*.js",
+      app: [
+				"./app/js/scripts/*.js",
+				"./app/blocks/**/*.js"
+			],
       build: "./build/js/",
-      watch: "./app/js/scripts/*.js"
+      watch: [
+				"./app/js/scripts/*.js",
+				"./app/blocks/**/*.js"
+			]
     }
   },
   svg: {
