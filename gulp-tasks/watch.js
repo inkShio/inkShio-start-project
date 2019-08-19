@@ -26,9 +26,9 @@ gulp.task("watch", (cb) => {
 
   gulp.watch(paths.favicons.watch, gulp.series("favicons"));
 
-  gulp.watch(paths.json.watch, gulp.series("json"));
+  gulp.watch(paths.json.watch, gulp.series("json", "pug", "pug-reload"));
 
-  gulp.watch(paths.pug.watch, gulp.series("pug"))
+  gulp.watch(paths.pug.watch, gulp.series("pug", "pug-reload"))
     .on("all", (event, filepath) => {
       global.emittyChangedFile = filepath;
     });

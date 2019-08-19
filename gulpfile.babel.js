@@ -76,6 +76,7 @@ require("./gulp-tasks/libs");
 require("./gulp-tasks/scripts");
 require("./gulp-tasks/json");
 require("./gulp-tasks/pug");
+require("./gulp-tasks/pug-reload");
 require("./gulp-tasks/images");
 require("./gulp-tasks/content");
 require("./gulp-tasks/fonts");

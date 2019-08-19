@@ -9,7 +9,6 @@ import pug from "gulp-pug";
 import prettyHtml from "gulp-pretty-html";
 import replace from "gulp-replace";
 import debug from "gulp-debug";
-import browsersync from "browser-sync";
 import gulpif from "gulp-if";
 import { setup as emittySetup } from "emitty";
 
@@ -47,9 +46,7 @@ gulp.task("pug", () =>
         // Сообщение об успехе
         .pipe(debug({
           "title": "pug: "
-        }))
-        // Перезагрузка страницы
-        .on("end", browsersync.reload);
+        }));
     });
   })
 );
