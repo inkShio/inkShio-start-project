@@ -69,6 +69,8 @@ const paths = {
   }
 };
 
+const isDevelopment = (process.env.NODE_ENV == "development" ? true : false);
+
 require("./gulp-tasks/svg");
 require("./gulp-tasks/serve");
 require("./gulp-tasks/scss");
@@ -83,8 +85,6 @@ require("./gulp-tasks/fonts");
 require("./gulp-tasks/favicons");
 require("./gulp-tasks/watch");
 
-export { paths };
+export { paths,  isDevelopment };
 
-export const dev = gulp.series("svg", "scss", "libs", "scripts", "images", "content", "fonts", "favicons", "json", "pug", "watch");
-
-export default dev;
+export default gulp.series("svg", "scss", "libs", "scripts", "images", "content", "fonts", "favicons", "json", "pug", "watch");

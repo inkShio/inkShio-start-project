@@ -1,6 +1,6 @@
 "use strict";
 
-import { paths } from "../gulpfile.babel";
+import { paths, isDevelopment } from "../gulpfile.babel";
 import gulp from "gulp";
 import plumber from "gulp-plumber";
 import fs from "fs";
@@ -14,8 +14,8 @@ import { setup as emittySetup } from "emitty";
 
 const emittyPug = emittySetup("app", "pug");
 
-gulp.task("pug", () =>
-  new Promise((resolve, reject) => {
+gulp.task("pug", (done) => {
+	new Promise((resolve, reject) => {
     emittyPug.scan(global.emittyChangedFile).then(() => {
       //console.log(emittyPug.storage());
       gulp.src(paths.pug.app)
@@ -31,15 +31,15 @@ gulp.task("pug", () =>
         .pipe(pug({
           pretty: true
         }))
-        .pipe(prettyHtml({
+        .pipe(gulpif(!isDevelopment, prettyHtml({
           indent_size: 2,
           indent_char: " ",
           unformatted: ["code", "em", "strong", "span", "i", "b", "br", "script"],
           content_unformatted: [],
-        }))
-        .pipe(replace(/^(\s*)(<button.+?>)(.*)(<\/button>)/gm, '$1$2\n$1  $3\n$1$4'))
-        .pipe(replace(/^( *)(<.+?>)(<script>)([\s\S]*)(<\/script>)/gm, '$1$2\n$1$3\n$4\n$1$5\n'))
-        .pipe(replace(/^( *)(<.+?>)(<script\s+src.+>)(?:[\s\S]*)(<\/script>)/gm, '$1$2\n$1$3$4'))
+        })))
+        .pipe(gulpif(!isDevelopment, replace(/^(\s*)(<button.+?>)(.*)(<\/button>)/gm, '$1$2\n$1  $3\n$1$4')))
+        .pipe(gulpif(!isDevelopment, replace(/^( *)(<.+?>)(<script>)([\s\S]*)(<\/script>)/gm, '$1$2\n$1$3\n$4\n$1$5\n')))
+        .pipe(gulpif(!isDevelopment, replace(/^( *)(<.+?>)(<script\s+src.+>)(?:[\s\S]*)(<\/script>)/gm, '$1$2\n$1$3$4')))
         .pipe(gulp.dest(paths.pug.build))
         .on("end", resolve)
         .on("error", reject)
@@ -48,5 +48,6 @@ gulp.task("pug", () =>
           "title": "pug: "
         }));
     });
-  })
-);
+  });
+	done();
+});

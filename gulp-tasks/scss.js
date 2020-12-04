@@ -1,6 +1,6 @@
 "use strict";
 
-import { paths } from "../gulpfile.babel";
+import { paths, isDevelopment } from "../gulpfile.babel";
 import gulp from "gulp";
 import sourcemaps from "gulp-sourcemaps";
 import plumber from "gulp-plumber";
@@ -12,36 +12,37 @@ import csscomb from "gulp-csscomb";
 import mincss from "gulp-clean-css";
 import rename from "gulp-rename";
 import browsersync from "browser-sync";
+import gulpif from "gulp-if";
 import debug from "gulp-debug";
 
 gulp.task("scss", () => {
   return gulp.src(paths.scss.app)
-    // Карта кода
-    .pipe(sourcemaps.init())
+    // Карта кода (только для dev)
+    .pipe(gulpif(isDevelopment, sourcemaps.init()))
     // Вывод ошибки
     .pipe(plumber())
     // Для поиска всех файлов sass (scss)
 		.pipe(globbing({
-			extensions: ['.scss']
+			extensions: [".scss"]
 		}))
     // Используем scss
     .pipe(sass({
-			outputStyle: 'expanded'
+			outputStyle: "expanded"
 		}))
     // Ставим префиксы
     .pipe(autoprefixer())
-    // Группируем медиа запросы
-    .pipe(gcmq())
-    // Упорядочим стили
-		.pipe(csscomb())
-    // Минифицируем css
-    .pipe(mincss())
+    // Группируем медиа запросы (только для prod)
+    .pipe(gulpif(!isDevelopment, gcmq()))
+    // Упорядочим стили (только для prod, csscomb не работает с sourcemaps в режиме dev)
+		.pipe(gulpif(!isDevelopment, csscomb()))
+    // Минифицируем css (только для prod)
+    .pipe(gulpif(!isDevelopment, mincss()))
     // Добавляем к названию min
     .pipe(rename({
       suffix: ".min"
     }))
-    // Кидаем карту кода в папку
-    .pipe(sourcemaps.write("./maps/"))
+    // Кидаем карту кода в папку (только для dev)
+    .pipe(gulpif(isDevelopment, sourcemaps.write(".")))
     // Кидаем в папку
     .pipe(gulp.dest(paths.scss.build))
     // Сообщение об успехе

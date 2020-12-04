@@ -1,17 +1,22 @@
 "use strict";
 
-import { paths } from "../gulpfile.babel";
+import { paths, isDevelopment } from "../gulpfile.babel";
 import gulp from "gulp";
 import imagemin from "gulp-imagemin";
 import imageminPngquant from "imagemin-pngquant";
 import imageminZopfli from "imagemin-zopfli";
 import imageminMozjpeg from "imagemin-mozjpeg";
 import debug from "gulp-debug";
+import gulpif from "gulp-if";
+import newer from "gulp-newer";
 import browsersync from "browser-sync";
 
 gulp.task("images", () => {
   return gulp.src(paths.images.app)
-    .pipe(imagemin([
+    // Проверяем новые изображения (только для dev)
+    .pipe(gulpif(isDevelopment, newer(paths.images.build)))
+    // Минимизируем картинки (только для prod)
+    .pipe(gulpif(!isDevelopment, imagemin([
       imageminPngquant({
         speed: 5,
         quality: [0.6, 0.8]
@@ -35,7 +40,7 @@ gulp.task("images", () => {
           { collapseGroups: true }
         ]
       })
-    ]))
+    ])))
     .pipe(gulp.dest(paths.images.build))
     .pipe(debug({
       "title": "images: "

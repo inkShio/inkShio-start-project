@@ -30,8 +30,8 @@ gulp.task("svg", () => {
     // Удалаем все лишнее
     .pipe(cheerio({
       run: function($) {
-        $("[fill]").removeAttr("fill");
-        $("[stroke]").removeAttr("stroke");
+        //$("[fill]").removeAttr("fill");
+        //$("[stroke]").removeAttr("stroke");
         $("[style]").removeAttr("style");
         $("path[class]").removeAttr("class");
         $("style").remove();
