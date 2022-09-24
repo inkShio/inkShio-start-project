@@ -1,0 +1,15 @@
+/*
+	Делайем короткие названия переменных Bootstrap сетки
+*/
+$bp-xs: map.get($grid-breakpoints, 'xs');
+$bp-sm: map.get($grid-breakpoints, 'sm');
+$bp-md: map.get($grid-breakpoints, 'md');
+$bp-lg: map.get($grid-breakpoints, 'lg');
+$bp-xl: map.get($grid-breakpoints, 'xl');
+$bp-xxl: map.get($grid-breakpoints, 'xxl');
+
+/* Объявляем CSS переменные */
+:root {
+	--font: 'Montserrat', sans-serif;
+	--color-base: #2c3136;
+}

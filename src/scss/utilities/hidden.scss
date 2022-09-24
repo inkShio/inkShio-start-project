@@ -1,0 +1,13 @@
+.hidden {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+
+	overflow: hidden;
+
+	visibility: hidden;
+
+	opacity: 0;
+
+	clip: rect(1px, 1px, 1px, 1px);
+}

@@ -1,0 +1,8 @@
+{
+	"reject": [
+		"del",
+		"gulp-imagemin",
+		"imagemin-webp",
+		"webp-converter"
+	]
+}

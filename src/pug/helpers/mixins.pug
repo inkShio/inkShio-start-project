@@ -1,0 +1,65 @@
+//-
+	* Миксин который позволяет использовать миксин в миксине
+	*
+	* @param {string} mixin название миксина
+	* @param {array} params параметры миксина
+	*/
+
+//- -
+//- 	function pugMixin(mixin, ...params) {
+//- 		const len = pug_html.length;
+//- 		pug_mixins[mixin](...params);
+//- 		const result = pug_html.slice(len);
+//- 		pug_html = pug_html.slice(0, len);
+//- 		return result;
+//- 	}
+
+//-
+	* Изображение с использованием webp
+	*
+	* @param {string} path путь к файлу
+	* @param {string} alt описание
+	*/
+
+mixin webp(options)
+	- var DEFAULT_OPTIONS = {};
+	- DEFAULT_OPTIONS.path = ''
+	- DEFAULT_OPTIONS.alt = ''
+
+	- options = Object.assign({}, DEFAULT_OPTIONS, options || {});
+
+	- let fileNameExtension = options.path.replace(/^.*[\\\/]/, ''); // test.jpg
+	- let filePath = options.path.replace(fileNameExtension, ''); // ./img/
+	- let fileFindExtension = fileNameExtension.split('.');
+	- let fileLength = fileFindExtension.length;
+	- let fileExtension = fileFindExtension[fileLength - 1]; // jpg
+	- let fileName = fileNameExtension.replace('.' + fileExtension, ''); // test
+
+	case fileExtension
+		when 'jpg'
+		when 'jpeg'
+		when 'jfif'
+		when 'pjpeg'
+		when 'pjp'
+			- finalFileExtension = 'image/jpeg';
+			- break
+		when 'png'
+			- finalFileExtension = 'image/png';
+			- break
+		//- when 'avif'
+		//- 	- let finalFileExtension = 'image/avif';
+		//- 	- break
+		//- when 'gif'
+		//- 	- let finalFileExtension = 'image/gif';
+		//- 	- break
+		//- when 'svg'
+		//- 	- let finalFileExtension = 'image/svg+xml';
+		//- 	- break
+		//- when 'webp'
+		//- 	- let finalFileExtension = 'image/webp';
+		//- 	- break
+
+	picture
+		source(type='image/webp', srcset= `${filePath + fileName}.webp`)
+		source(type= finalFileExtension, srcset= options.path)
+		img(src= options.path, alt= options.alt)

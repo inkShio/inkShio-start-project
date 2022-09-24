@@ -1,0 +1,13 @@
+.container {
+	width: 100%;
+	min-width: 320px;
+	max-width: 1248px;
+	margin: 0 auto;
+	padding-right: 24px;
+	padding-left: 24px;
+
+	@include min-screen($bp-md) {
+		padding-right: 48px;
+		padding-left: 48px;
+	}
+}

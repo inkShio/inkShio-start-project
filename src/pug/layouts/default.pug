@@ -1,0 +1,82 @@
+include ./../helpers/mixins
+
+//- Блок где будем прописывать переменные
+block var
+
+doctype html
+html(lang='ru-RU', prefix='og: http://ogp.me/ns#')
+	head
+		//- Определяет кодировку веб-сайта, стандартом является utf-8
+		meta(charset='utf-8')
+		//- Настройки viewport, связанные с мобильной отзывчивостью
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
+		//- Заговоловок страницы
+		title= pageTitle
+		//- Описание страницы
+		meta(name='description', content='Описание страницы')
+		//- Styles
+		link(href='css/style.min.css', rel='stylesheet')
+		//- Favicons
+		// inject:favicons
+		// endinject
+		//- Open Graph
+		meta(property='og:type', content='website')
+		meta(property='og:site_name', content='')
+		meta(property='og:url', content='')
+		meta(property='og:image', content='')
+		meta(property='og:title', content='')
+		meta(property='og:description', content='')
+		meta(property='og:locale', content='ru_Ru')
+		//- Yandex табло
+		meta(name='yandex-tableau-widget', content='logo=favicons/yandex-tableau-logo.png, color=#ff6e11')
+		//- Запрещаем распознавание телефонов, адреса, даты, ел. почты для некоторых браузеров.
+		meta(name='format-detection', content='telephone=no')
+		meta(name='format-detection', content='date=no')
+		meta(name='format-detection', content='address=no')
+		meta(name='format-detection', content='email=no')
+		//- Указывает Google не показывать поисковую строку sitelinks
+		meta(name='google', content='nositelinkssearchbox')
+		//- Указывает Google не переводить документ
+		meta(name='google', content='notranslate')
+		//- Google Search Console (https://search.google.com/search-console/about)
+		meta(name='google-site-verification', content='verification_token')
+		//- Яндекс Вебмастер (https://webmaster.yandex.ru)
+		meta(name='yandex-verification', content='verification_token')
+		//- Bing Webmaster Center (https://www.bing.com/webmasters/about)
+		meta(name='msvalidate.01', content='verification_token')
+		//- Webmaster mail.ru (https://webmaster.mail.ru/)
+		meta(name='wmail-verification', content='verification_token')
+		//- Альтернативный язык
+			link(href='https://es.example.com/', rel='alternate', hreflang='es')
+		//- Google fonts
+		link(href='https://fonts.googleapis.com', rel='preconnect')
+		link(href='https://fonts.gstatic.com', rel='preconnect', crossorigin='')
+		link(href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap', rel='stylesheet')
+		//- Канонический адрес
+		link(href='https://example.com/', rel='canonical')
+		//- Preconnect
+		link(href='//google-analytics.com', rel='preconnect', crossorigin='')
+		link(href='//mc.yandex.ru', rel='preconnect', crossorigin='')
+		//- Указать путь к шаблону.
+				Для разработки TEMPLATE_URL = ''
+				Для боевого режима прописать путь к папке с шаблоном
+				Пример: TEMPLATE_URL = '/folder/templates/tamplate_name/'
+		script.
+			const TEMPLATE_URL = '';
+		//- Блок если надо добавить где то что в head
+		block head
+	body
+		//- Блок для чистой страницы
+		block body
+			.layout
+				.layout__header
+					include ../../blocks/modules/header/header
+				.layout__body.container.row
+					main.layout__content.col-12.col-lg-9
+						block content
+					aside.layout__sidebar.col-12.col-lg-3 SIDEBAR
+				.layout__footer
+					include ../../blocks/modules/footer/footer
+		script(src='js/scripts.min.js')
+		//- Блок для добавления скриптов
+		block scripts

@@ -10,7 +10,6 @@
 .publish
 .Spotlight-V100
 .Trashes
-.vscode
 __MACOSX
 bower_components
 build
