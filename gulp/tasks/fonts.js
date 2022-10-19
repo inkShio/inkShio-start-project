@@ -89,7 +89,7 @@ export const fontsStyle = (cb) => {
 					}
 
 					fs.appendFile(fontsFile,
-						`\n@font-face {\n\tfont-family: ${fontName};\n\tfont-display: swap;\n\tsrc: url('../fonts/${fontFileName}.woff2') format('woff2'), url('../fonts/${fontName}.woff') format('woff');\n\tfont-weight: ${fontWeight};\n\tfont-style: normal;\n}`, cb)
+						`\n@font-face {\n\tfont-family: ${fontName};\n\tfont-display: swap;\n\tsrc: url('../fonts/${fontFileName}.woff2') format('woff2'), url('../fonts/${fontFileName}.woff') format('woff');\n\tfont-weight: ${fontWeight};\n\tfont-style: normal;\n}`, cb)
 					newFileOnly = fontFileName;
 				}
 			}
