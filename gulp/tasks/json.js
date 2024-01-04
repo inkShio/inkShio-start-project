@@ -2,9 +2,9 @@ import gulp from 'gulp';
 import debug from 'gulp-debug';
 import jsonConcat from 'gulp-json-concat';
 import plumber from 'gulp-plumber';
-import config from '../config';
-import { pugBuild } from './pug';
-import { reload } from './server';
+import config from '../config.js';
+import { pugBuild } from './pug.js';
+import { reload } from './server.js';
 
 export const jsonBuild = () => (
 	gulp.src(config.paths.json.app)

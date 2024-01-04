@@ -10,19 +10,22 @@ import pug from 'gulp-pug';
 import versionNumber from 'gulp-version-number';
 import posthtmlAttrsSorter from 'posthtml-attrs-sorter';
 import through2 from 'through2';
-import config from '../config';
-import { reload } from './server';
+import config from '../config.js';
+import { reload } from './server.js';
 
-const emitty = require('@emitty/core').configure();
+import emitty from '@emitty/core';
+import * as emittyLang from '@emitty/language-pug';
 
-emitty.language({
+// const emitty = require('@emitty/core').configure();
+
+emitty.configure().language({
 	extensions: ['.pug'],
-	parser: require('@emitty/language-pug').parse,
+	parser: emittyLang.parse,
 });
 
 function getFilter(taskName) {
 	return through2.obj(function (file, _encoding, callback) {
-		emitty.filter(file.path, config.state.watch[taskName]).then((result) => {
+		emitty.configure().filter(file.path, config.state.watch[taskName]).then((result) => {
 			if (result) {
 				this.push(file);
 			}

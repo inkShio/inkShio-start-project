@@ -2,8 +2,8 @@ import fs from 'fs';
 import gulp from 'gulp';
 import inject from 'gulp-inject';
 import realFavicon from 'gulp-real-favicon';
-import config from '../config';
-import { reload } from './server';
+import config from '../config.js';
+import { reload } from './server.js';
 
 const FAVICON_DATA_FILE = `${config.paths.root.tmp}/faviconData.json`;
 

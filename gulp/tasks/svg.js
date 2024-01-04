@@ -7,8 +7,8 @@ import replace from 'gulp-replace';
 import svgmin from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
 import path from 'path';
-import config from '../config';
-import { reload } from './server';
+import config from '../config.js';
+import { reload } from './server.js';
 
 export const svgBuild = () => (
 	gulp.src(`${config.paths.svg.app}/**/*.svg`, {

@@ -7,8 +7,8 @@ import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
 import imageminPngquant from 'imagemin-pngquant';
 import imageminWebp from 'imagemin-webp';
-import config from '../config';
-import { reload } from './server';
+import config from '../config.js';
+import { reload } from './server.js';
 
 const copyImages = () => (
 	gulp.src(config.paths.images.app)
