@@ -7,16 +7,27 @@
 * скачайте необходимые зависимости: `npm i`
 ## Команды
 `npm run dev` — запускает сборку для разработки
+
 `npm run prod` — запускает сборку для продакшена
+
 `npm run html` — собрать html файлы
+
 `npm run html:prod` — собрать html файлы в режиме продакшена
+
 `npm run css` — собрать css файл
+
 `npm run css:prod` — собрать css файл в режиме продакшена
+
 `npm run js` — собрать js файл
+
 `npm run js:prod` — собрать js файл в режиме продакшена
+
 `npm run images:template` — собрать изображение шаблона
+
 `npm run images:content` — собрать изображения контента
+
 `npm run icon` — собрать спрайт иконок
+
 `npm run favicon` — сгенерировать фавикон
 
 Сборка может не запуститься из за ошибки `Cannot find module 'webp-converter/cwebp'`, для устранения данной ошибки запустите команду `npm install webp-converter@2.2.3 --save-dev`.
