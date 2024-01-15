@@ -1,16 +1,16 @@
 import gulp from 'gulp';
-import config from './gulp/config';
-import clean from './gulp/tasks/clean';
-import { contentBuild, contentWatch } from './gulp/tasks/content';
-import { faviconsWatch, generateFavicon, injectFaviconMarkups, saveHtmlFileFavicon } from './gulp/tasks/favicons';
-import { fontsStyle, fontsWatch, otfToTtf, ttfToWoff, ttfToWoff2 } from './gulp/tasks/fonts';
-import { imagesBuild, imagesWatch } from './gulp/tasks/images';
-import { jsonBuild, jsonWatch } from './gulp/tasks/json';
-import { pugBuild, pugWatch } from './gulp/tasks/pug';
-import { scriptsBuild, scriptsWatch } from './gulp/tasks/scripts';
-import { server } from './gulp/tasks/server';
-import { scssBuild, scssWatch } from './gulp/tasks/styles';
-import { svgBuild, svgWatch } from './gulp/tasks/svg';
+import config from './gulp/config.js';
+import clean from './gulp/tasks/clean.js';
+import { contentBuild, contentWatch } from './gulp/tasks/content.js';
+import { faviconsWatch, generateFavicon, injectFaviconMarkups, saveHtmlFileFavicon } from './gulp/tasks/favicons.js';
+import { fontsStyle, fontsWatch, otfToTtf, ttfToWoff, ttfToWoff2 } from './gulp/tasks/fonts.js';
+import { imagesBuild, imagesWatch } from './gulp/tasks/images.js';
+import { jsonBuild, jsonWatch } from './gulp/tasks/json.js';
+import { pugBuild, pugWatch } from './gulp/tasks/pug.js';
+import { scriptsBuild, scriptsWatch } from './gulp/tasks/scripts.js';
+import { server } from './gulp/tasks/server.js';
+import { scssBuild, scssWatch } from './gulp/tasks/styles.js';
+import { svgBuild, svgWatch } from './gulp/tasks/svg.js';
 
 config.setEnv();
 
@@ -44,6 +44,37 @@ export const watch = gulp.series(
 	)
 );
 
+export const html = gulp.series(
+	jsonBuild,
+	pugBuild
+);
+
+export const css = gulp.series(
+	otfToTtf,
+	ttfToWoff,
+	ttfToWoff2,
+	fontsStyle,
+	scssBuild
+);
+
+export const js = gulp.series(
+	scriptsBuild
+);
+
+export const templateImages = gulp.series(
+	imagesBuild
+);
+
+export const contentImages = gulp.series(
+	contentBuild
+);
+
+export const icon = gulp.series(
+	svgBuild
+);
+
 export const favicon = gulp.series(
-	generateFavicon, saveHtmlFileFavicon, injectFaviconMarkups
+	generateFavicon,
+	saveHtmlFileFavicon,
+	injectFaviconMarkups
 );

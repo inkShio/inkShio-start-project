@@ -1,6 +1,7 @@
 {
 	"reject": [
 		"del",
+		"emitty",
 		"gulp-imagemin",
 		"imagemin-webp",
 		"webp-converter"

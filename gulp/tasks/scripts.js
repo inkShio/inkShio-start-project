@@ -6,8 +6,8 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import buffer from 'vinyl-buffer';
 import source from 'vinyl-source-stream';
-import config from '../config';
-import { reload } from './server';
+import config from '../config.js';
+import { reload } from './server.js';
 
 export const scriptsBuild = () => (
 	browserify(config.paths.js.app, {

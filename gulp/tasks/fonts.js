@@ -1,12 +1,13 @@
 import del from 'del';
-import fs from "fs";
+import fs from 'fs';
 import gulp from 'gulp';
 import debug from 'gulp-debug';
 import fonter from 'gulp-fonter';
 import plumber from 'gulp-plumber';
 import ttf2woff2 from 'gulp-ttf2woff2';
-import config from '../config';
-import { scssBuild } from './styles';
+import config from '../config.js';
+import { reload } from './server.js';
+import { scssBuild } from './styles.js';
 
 export const otfToTtf = () => (
 	gulp.src(`${config.paths.fonts.app}/*.otf`)
@@ -103,4 +104,4 @@ const cleanFonts = () => (
 	del([config.paths.fonts.build, `${config.paths.root.tmp}/*.ttf`, `${config.paths.root.tmp}/fonts-generated.scss`])
 );
 
-export const fontsWatch = () => gulp.watch(config.paths.fonts.watch, gulp.series(cleanFonts, otfToTtf, ttfToWoff, ttfToWoff2, fontsStyle, scssBuild));
+export const fontsWatch = () => gulp.watch(config.paths.fonts.watch, gulp.series(cleanFonts, otfToTtf, ttfToWoff, ttfToWoff2, fontsStyle, scssBuild, reload));

@@ -1,7 +1,6 @@
 /*
 	Функция процентного соотношения
 */
-
 @function percentage-ratio($a, $b, $percent: 100%) {
 	@return math.div($a, $b) * $percent;
 }

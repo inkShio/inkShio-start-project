@@ -1,3 +1,5 @@
+/* stylelint-disable selector-no-vendor-prefix */
+
 /*
   This mixin can be used to set the object-fit:
   @include object-fit(contain);
@@ -22,8 +24,79 @@
 /*
 	Эффект перехода
 */
-@mixin transition($property...) {
+@mixin transition-mixin($property...) {
 	transition-timing-function: ease;
-	transition-duration: 200ms;
+	transition-duration: 300ms;
 	transition-property: $property;
+}
+
+/*
+	Цвет плейсхолдера
+*/
+@mixin placeholder-color($color) {
+	&::-webkit-input-placeholder {
+		color: $color;
+
+		/* WebKit, Blink, Edge */
+		text-overflow: ellipsis;
+
+		opacity: 1;
+
+		@include transition-mixin(color);
+	}
+
+	&:-moz-placeholder {
+		color: $color;
+
+		/* Mozilla Firefox 4 to 18 */
+		text-overflow: ellipsis;
+
+		opacity: 1;
+
+		@include transition-mixin(color);
+	}
+
+	&::-moz-placeholder {
+		color: $color;
+
+		/* Mozilla Firefox 19+ */
+		text-overflow: ellipsis;
+
+		opacity: 1;
+
+		@include transition-mixin(color);
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+
+		/* Internet Explorer 10-11 */
+		text-overflow: ellipsis;
+
+		opacity: 1;
+
+		@include transition-mixin(color);
+	}
+
+	&::-ms-input-placeholder {
+		color: $color;
+
+		/* Microsoft Edge */
+		text-overflow: ellipsis;
+
+		opacity: 1;
+
+		@include transition-mixin(color);
+	}
+
+	&::placeholder {
+		color: $color;
+
+		/* Most modern browsers support this now. */
+		text-overflow: ellipsis;
+
+		opacity: 1;
+
+		@include transition-mixin(color);
+	}
 }
