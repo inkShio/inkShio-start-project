@@ -47,21 +47,13 @@ const config = {
 		fonts: {
 			app: `${srcFolder}/static/fonts`,
 			build: `${buildFolder}/fonts`,
-			watch: `${srcFolder}/static/fonts/*.{otf, ttf}`
+			watch: `${srcFolder}/static/fonts/*.{otf,ttf}`
 		},
 		favicons: {
 			app: `${srcFolder}/static/favicons/favicon.svg`,
 			build: `${buildFolder}/favicons`,
 			watch: `${srcFolder}/static/favicons/*.*`
 		},
-	},
-	state: {
-		isWatchMode: false,
-		// Changed files are written by the name of the task that will process them.
-		// This is necessary to support more than one language in @emitty.
-		watch: {
-			pugBuild: undefined
-		}
 	},
 	setEnv() {
 		this.isProd = process.argv.includes('--prod');

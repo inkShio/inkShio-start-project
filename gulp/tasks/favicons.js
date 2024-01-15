@@ -11,26 +11,26 @@ export const generateFavicon = (done) => {
 	realFavicon.generateFavicon({
 		masterPicture: config.paths.favicons.app,
 		dest: config.paths.favicons.build,
-		iconsPath: 'favicons',
+		iconsPath: '/favicons/',
 		design: {
 			ios: {
 				pictureAspect: 'backgroundAndMargin',
 				backgroundColor: '#ffffff',
-				margin: '18%',
+				margin: '32%',
 				assets: {
 					ios6AndPriorIcons: false,
 					ios7AndLaterIcons: false,
 					precomposedIcons: false,
 					declareOnlyDefaultIcon: true
 				},
-				appName: 'My App'
+				appName: 'inkShio start project'
 			},
 			desktopBrowser: {
 				design: 'raw'
 			},
 			windows: {
 				pictureAspect: 'whiteSilhouette',
-				backgroundColor: '#20232a',
+				backgroundColor: '#d04016',
 				onConflict: 'override',
 				assets: {
 					windows80Ie10Tile: false,
@@ -41,16 +41,16 @@ export const generateFavicon = (done) => {
 						rectangle: false
 					}
 				},
-				appName: 'My App'
+				appName: 'inkShio start project'
 			},
 			androidChrome: {
 				pictureAspect: 'noChange',
 				themeColor: '#ffffff',
 				manifest: {
-					name: 'My App',
-					startUrl: 'https://example.com',
+					name: 'inkShio start project',
+					startUrl: 'https://github.com/inkShio/inkShio-start-project',
 					display: 'standalone',
-					orientation: 'portrait',
+					orientation: 'notSet',
 					onConflict: 'override',
 					declared: true
 				},
@@ -60,14 +60,13 @@ export const generateFavicon = (done) => {
 				}
 			},
 			safariPinnedTab: {
-				pictureAspect: 'blackAndWhite',
-				threshold: 62.5,
-				themeColor: '#20232a'
+				pictureAspect: 'silhouette',
+				themeColor: '#d04016'
 			}
 		},
 		settings: {
 			compression: 2,
-			scalingAlgorithm: 'Cubic',
+			scalingAlgorithm: 'Mitchell',
 			errorOnImageTooSmall: false,
 			readmeFile: false,
 			htmlCodeFile: false,
@@ -78,12 +77,6 @@ export const generateFavicon = (done) => {
 		done();
 	});
 };
-
-// const injectFaviconMarkups = () => (
-// 	gulp.src(`${config.paths.root.build}/*.html`)
-// 		.pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-// 		.pipe(gulp.dest(config.paths.root.build))
-// );
 
 export const saveHtmlFileFavicon = (cb) => {
 	fs.writeFileSync(`${config.paths.root.tmp}/favicons-meta.html`, JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code);

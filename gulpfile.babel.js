@@ -44,6 +44,37 @@ export const watch = gulp.series(
 	)
 );
 
+export const html = gulp.series(
+	jsonBuild,
+	pugBuild
+);
+
+export const css = gulp.series(
+	otfToTtf,
+	ttfToWoff,
+	ttfToWoff2,
+	fontsStyle,
+	scssBuild
+);
+
+export const js = gulp.series(
+	scriptsBuild
+);
+
+export const templateImages = gulp.series(
+	imagesBuild
+);
+
+export const contentImages = gulp.series(
+	contentBuild
+);
+
+export const icon = gulp.series(
+	svgBuild
+);
+
 export const favicon = gulp.series(
-	generateFavicon, saveHtmlFileFavicon, injectFaviconMarkups
+	generateFavicon,
+	saveHtmlFileFavicon,
+	injectFaviconMarkups
 );

@@ -6,18 +6,14 @@ import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
-// import gulpSass from 'gulp-sass';
 import sassGlob from 'gulp-sass-glob';
 import webpcss from 'gulp-webpcss';
-// import dartSass from 'sass';
 import config from '../config.js';
 import { stream } from './server.js';
-
-
 import gulpSass from 'gulp-sass';
 import * as dartSass from 'sass';
-const sass = gulpSass(dartSass);
 
+const sass = gulpSass(dartSass);
 
 export const scssBuild = () => (
 	gulp.src(config.paths.scss.app, {
