@@ -1,7 +1,7 @@
 # inkShio-start-project
 ## Установка
 * установите [NodeJS](https://nodejs.org/en/)
-* установите глобально [Gulp](https://gulpjs.com/): `npm i -g gulp`
+* установите глобально [Gulp](https://gulpjs.com/): `npm install --global gulp-cli`
 * скачайте сборку с помощью [Git](https://git-scm.com/downloads): `git clone https://github.com/inkShio/inkShio-start-project.git`
 * перейдите в скачанную папку со сборкой: `cd inkShio-start-project`
 * скачайте необходимые зависимости: `npm i`
