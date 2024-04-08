@@ -132,7 +132,8 @@ each item in employees
 Список допустимых суфиксов:
 * `thin` - 100;
 * `extralight` - 200;
-* `ligth` - 300;
+* `light` - 300;
+* `regular` - 400;
 * `medium` - 500;
 * `semibold` - 600;
 * `bold` - 700;

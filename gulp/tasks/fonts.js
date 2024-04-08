@@ -66,8 +66,11 @@ export const fontsStyle = (cb) => {
 						case 'extralight':
 							fontWeight = 200;
 							break;
-						case 'ligth':
+						case 'light':
 							fontWeight = 300;
+							break;
+						case 'regular':
+							fontWeight = 400;
 							break;
 						case 'medium':
 							fontWeight = 500;
