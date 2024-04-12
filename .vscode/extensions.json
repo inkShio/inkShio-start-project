@@ -3,6 +3,7 @@
 		"stylelint.vscode-stylelint",
 		"editorconfig.editorconfig",
 		"dbaeumer.vscode-eslint",
-		"mrmlnc.vscode-puglint"
+		"mrmlnc.vscode-puglint",
+		"vunguyentuan.vscode-css-variables"
 	]
 }

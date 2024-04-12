@@ -15,5 +15,11 @@
 		"sass",
 		"scss"
 	],
-	"puglint.enable": true
+	"puglint.enable": true,
+	"cssVariables.lookupFiles": [
+		"**/*.css",
+		"**/*.scss",
+		"**/*.sass",
+		"**/*.less"
+	]
 }
