@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"name": "inkshio-start-project",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "Сборка проекта",
 	"scripts": {
 		"dev": "gulp watch",
@@ -118,7 +118,6 @@
 		"focus-visible": "^5.2.0",
 		"ink-reset-scss": "^2.0.0",
 		"jquery": "^3.7.1",
-		"object-fit-images": "^3.2.4",
 		"sass-mediaqueries": "^1.6.1"
 	}
 }

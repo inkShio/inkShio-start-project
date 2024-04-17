@@ -7,7 +7,6 @@ import vars from './helpers/vars';
 /* Libs */
 //import 'focus-visible';
 import $ from 'jquery';
-import objectFitImages from 'object-fit-images';
 
 /* Components */
 
@@ -21,6 +20,5 @@ window.jQuery = $;
 isWebp();
 
 documentReady(() => {
-	objectFitImages();
 	svgIconLoading();
 });

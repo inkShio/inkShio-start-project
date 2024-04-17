@@ -110,8 +110,6 @@ each item in employees
 ### JS
 Подключена библиотека [jquery](https://github.com/jquery/jquery).
 
-Подключен полифил [object-fit-images](https://github.com/fregante/object-fit-images).
-
 Что происходит при сборке:
 - Создание карт источников (`dev`)
 - Минимизация файла (`prod`)
