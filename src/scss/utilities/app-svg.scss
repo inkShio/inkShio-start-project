@@ -1,13 +1,13 @@
 .app-svg {
+	pointer-events: none;
+
 	position: absolute;
+	z-index: -1;
 	top: 0;
 	left: 0;
-	z-index: -1;
 
 	width: 0;
 	height: 0;
 
 	visibility: hidden;
-
-	pointer-events: none;
 }

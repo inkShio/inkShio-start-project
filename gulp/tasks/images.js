@@ -1,27 +1,26 @@
 import gulp from 'gulp';
 import debug from 'gulp-debug';
 import gulpif from 'gulp-if';
-import imagemin from 'gulp-imagemin';
+import imagemin, { mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import newer from 'gulp-newer';
 import plumber from 'gulp-plumber';
-import rename from 'gulp-rename';
-import imageminPngquant from 'imagemin-pngquant';
-import imageminWebp from 'imagemin-webp';
+import webp from 'gulp-webp';
 import config from '../config.js';
 import { reload } from './server.js';
 
 const copyImages = () => (
-	gulp.src(config.paths.images.app)
+	gulp.src([config.paths.images.app], { encoding: false })
 		.pipe(plumber())
 		.pipe(gulpif(config.isDev, newer(config.paths.images.build)))
 		.pipe(gulpif(config.isProd, imagemin([
-			imagemin.mozjpeg({
-				quality: 80
+			mozjpeg({
+				quality: 80,
+				progressive: true
 			}),
-			imageminPngquant({
-				quality: [0.8, 0.9]
+			optipng({
+				optimizationLevel: 5
 			}),
-			imagemin.svgo({
+			svgo({
 				plugins: [{
 					removeViewBox: false
 				},
@@ -58,22 +57,13 @@ const copyImages = () => (
 );
 
 const convertImagesToWebp = () => (
-	gulp.src(config.paths.images.app)
+	gulp.src([config.paths.images.app], { encoding: false })
 		.pipe(plumber())
 		.pipe(newer({
 			dest: config.paths.images.build,
 			ext: '.webp'
 		}))
-		.pipe(imagemin([
-			imageminWebp({
-				quality: 80
-			}),
-		], {
-			verbose: true
-		}))
-		.pipe(rename({
-			extname: '.webp',
-		}))
+		.pipe(webp())
 		.pipe(debug({
 			'title': 'webp: '
 		}))

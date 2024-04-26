@@ -1,9 +1,9 @@
 {
-	"recommendations": [
-		"stylelint.vscode-stylelint",
-		"editorconfig.editorconfig",
-		"dbaeumer.vscode-eslint",
-		"mrmlnc.vscode-puglint",
-		"vunguyentuan.vscode-css-variables"
-	]
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "mrmlnc.vscode-puglint",
+    "stylelint.vscode-stylelint",
+    "dbaeumer.vscode-eslint",
+    "vunguyentuan.vscode-css-variables"
+  ]
 }

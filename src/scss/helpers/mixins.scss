@@ -14,68 +14,62 @@
 */
 @mixin placeholder-color($color) {
 	&::-webkit-input-placeholder {
+		@include transition-mixin(color);
+
 		color: $color;
 
 		/* WebKit, Blink, Edge */
 		text-overflow: ellipsis;
-
 		opacity: 1;
-
-		@include transition-mixin(color);
 	}
 
 	&:-moz-placeholder {
+		@include transition-mixin(color);
+
 		color: $color;
 
 		/* Mozilla Firefox 4 to 18 */
 		text-overflow: ellipsis;
-
 		opacity: 1;
-
-		@include transition-mixin(color);
 	}
 
 	&::-moz-placeholder {
+		@include transition-mixin(color);
+
 		color: $color;
 
 		/* Mozilla Firefox 19+ */
 		text-overflow: ellipsis;
-
 		opacity: 1;
-
-		@include transition-mixin(color);
 	}
 
 	&:-ms-input-placeholder {
+		@include transition-mixin(color);
+
 		color: $color;
 
 		/* Internet Explorer 10-11 */
 		text-overflow: ellipsis;
-
 		opacity: 1;
-
-		@include transition-mixin(color);
 	}
 
 	&::-ms-input-placeholder {
+		@include transition-mixin(color);
+
 		color: $color;
 
 		/* Microsoft Edge */
 		text-overflow: ellipsis;
-
 		opacity: 1;
-
-		@include transition-mixin(color);
 	}
 
 	&::placeholder {
+		@include transition-mixin(color);
+
 		color: $color;
 
 		/* Most modern browsers support this now. */
 		text-overflow: ellipsis;
-
 		opacity: 1;
-
-		@include transition-mixin(color);
 	}
 }

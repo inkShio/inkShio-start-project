@@ -1,33 +1,40 @@
-import browserify from 'browserify';
 import gulp from 'gulp';
 import debug from 'gulp-debug';
-import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
-import uglify from 'gulp-uglify';
-import buffer from 'vinyl-buffer';
-import source from 'vinyl-source-stream';
+import plumber from 'gulp-plumber';
+import webpackStream from 'webpack-stream';
 import config from '../config.js';
 import { reload } from './server.js';
 
 export const scriptsBuild = () => (
-	browserify(config.paths.js.app, {
-		debug: true
-	})
-		.transform('babelify', {
-			presets: ['@babel/preset-env']
-		})
-		.bundle()
-		.on('error', function browserifyError(error) {
-			console.log(error.stack);
+	gulp.src(config.paths.js.app)
+		.pipe(plumber())
+		.pipe(webpackStream({
+			mode: config.isProd ? 'production' : 'development',
+			output: {
+				filename: 'scripts.min.js',
+			},
+			module: {
+				rules: [{
+					test: /\.m?js$/,
+					exclude: /node_modules/,
+					use: {
+						loader: 'babel-loader',
+						options: {
+							presets: [
+								['@babel/preset-env', {
+									targets: "defaults"
+								}]
+							]
+						}
+					}
+				}]
+			},
+			devtool: !config.isProd ? 'source-map' : false
+		}))
+		.on('error', function (err) {
+			console.error('WEBPACK ERROR', err);
 			this.emit('end');
 		})
-		.pipe(source('scripts.min.js'))
-		.pipe(buffer())
-		.pipe(gulpif(config.isDev, sourcemaps.init({
-			loadMaps: true
-		})))
-		.pipe(gulpif(config.isProd, uglify()))
-		.pipe(gulpif(config.isDev, sourcemaps.write()))
 		.pipe(debug({
 			'title': 'scripts: '
 		}))

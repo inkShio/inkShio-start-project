@@ -3,14 +3,16 @@
 	"parser": "@babel/babel-eslint",
 	"env": {
 		"browser": true,
-		"jquery": true
+		"es6": true,
+		"jquery": true,
+		"node": true
 	},
 	"rules": {
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
 				"devDependencies": [
-					"gulpfile.babel.js",
+					"gulpfile.js",
 					"gulp/**/*"
 				]
 			}

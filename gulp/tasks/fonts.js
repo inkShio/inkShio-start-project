@@ -1,4 +1,4 @@
-import del from 'del';
+import { deleteAsync } from 'del';
 import fs from 'fs';
 import gulp from 'gulp';
 import debug from 'gulp-debug';
@@ -103,8 +103,8 @@ export const fontsStyle = (cb) => {
 	cb();
 }
 
-const cleanFonts = () => (
-	del([config.paths.fonts.build, `${config.paths.root.tmp}/*.ttf`, `${config.paths.root.tmp}/fonts-generated.scss`])
-);
+const cleanFonts = () => {
+	return deleteAsync([config.paths.fonts.build, `${config.paths.root.tmp}/*.ttf`, `${config.paths.root.tmp}/fonts-generated.scss`]);
+};
 
 export const fontsWatch = () => gulp.watch(config.paths.fonts.watch, gulp.series(cleanFonts, otfToTtf, ttfToWoff, ttfToWoff2, fontsStyle, scssBuild, reload));

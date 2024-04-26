@@ -1,43 +1,31 @@
 # inkShio-start-project
 ## Установка
-* установите [NodeJS](https://nodejs.org/en/)
-* установите глобально [Gulp](https://gulpjs.com/): `npm install --global gulp-cli`
-* скачайте сборку с помощью [Git](https://git-scm.com/downloads): `git clone https://github.com/inkShio/inkShio-start-project.git`
-* перейдите в скачанную папку со сборкой: `cd inkShio-start-project`
-* скачайте необходимые зависимости: `npm i`
+- установите [NodeJS](https://nodejs.org/en/)
+- установите глобально [Gulp](https://gulpjs.com/): `npm install --global gulp-cli`
+- скачайте сборку с помощью [Git](https://git-scm.com/downloads): `git clone https://github.com/inkShio/inkShio-start-project.git`
+- перейдите в скачанную папку со сборкой: `cd inkShio-start-project`
+- скачайте необходимые зависимости: `npm i`
+
 ## Команды
-`npm run dev` — запускает сборку для разработки
-
-`npm run prod` — запускает сборку для продакшена
-
-`npm run html` — собрать html файлы
-
-`npm run html:prod` — собрать html файлы в режиме продакшена
-
-`npm run css` — собрать css файл
-
-`npm run css:prod` — собрать css файл в режиме продакшена
-
-`npm run js` — собрать js файл
-
-`npm run js:prod` — собрать js файл в режиме продакшена
-
-`npm run images:template` — собрать изображение шаблона
-
-`npm run images:content` — собрать изображения контента
-
-`npm run icon` — собрать спрайт иконок
-
-`npm run favicon` — сгенерировать фавикон
-
-Сборка может не запуститься из за ошибки `Cannot find module 'webp-converter/cwebp'`, для устранения данной ошибки запустите команду `npm install webp-converter@2.2.3 --save-dev`.
+- `npm run dev` — запускает сборку для разработки
+- `npm run prod` — запускает сборку для продакшена
+- `npm run html` — собрать html файлы
+- `npm run html:prod` — собрать html файлы в режиме продакшена
+- `npm run css` — собрать css файл
+- `npm run css:prod` — собрать css файл в режиме продакшена
+- `npm run js` — собрать js файл
+- `npm run js:prod` — собрать js файл в режиме продакшена
+- `npm run images:template` — собрать изображение шаблона
+- `npm run images:content` — собрать изображения контента
+- `npm run icon` — собрать спрайт иконок
+- `npm run favicon` — сгенерировать фавикон
 
 ## Как работает
 ### JSON
 Для удобства работы с данными в pug импользуем json.
 
 Допустим есть news.json
-```
+```json
 [
   {
     "title": "Заголовок 1",
@@ -52,7 +40,7 @@
 ]
 ```
 и employees.json
-```
+```json
 [
   {
     "name": "Иванов Иван Иванович",
@@ -69,7 +57,7 @@
 ]
 ```
 В pug выводим следующим образом
-```
+```pug
 each item in news
   .news
     .news__title= item.title
@@ -102,10 +90,20 @@ each item in employees
 
 Что происходит при сборке:
 - Создание карт источников (`dev`)
-- (webpcss) (`dev`, `prod`)
 - Добавление вендорных префиксов (`prod`)
 - Группировка media-запросов (`prod`)
 - Минимизация файла (`prod`)
+
+Для использования webp изображений в background используй следующий пример:
+```scss
+.image {
+  background-image: url('../images/pattern.png');
+
+  .webp & {
+    background-image: url('../images/pattern.webp');
+  }
+}
+```
 
 ### JS
 Подключена библиотека [jquery](https://github.com/jquery/jquery).
@@ -120,7 +118,8 @@ each item in employees
 - Конвертация в webp (`dev`, `prod`)
 
 ### SVG
-
+Собирается спрайт из svg файлов. Если в папке `svg` есть вложеные папки, то название иконки приобретет вид `название папки-название файла`.
+К примеру в папке `svg` лежит папка `elements`, в этой папке лежит файл `arrow.svg`, в итоге для вывода иконки нужно написать `elements-arrow`.
 
 ### FONTS
 Копируем шрифт с разрешением `.otf` или `.ttf` в папку `src/static/fonts/`, файлы сконвертируются в `.woff` и `.woff2` (Допустим Roboto-Thin.otf или Roboto-Thin.ttf).
@@ -128,20 +127,20 @@ each item in employees
 Название шрифта должно иметь понятный суффик. (Roboto **-Thin**.otf, Roboto **-Light**.otf и т.д.).
 
 Список допустимых суфиксов:
-* `thin` - 100;
-* `extralight` - 200;
-* `light` - 300;
-* `regular` - 400;
-* `medium` - 500;
-* `semibold` - 600;
-* `bold` - 700;
-* `extrabold`, `heavy` - 800;
-* `black` - 900;
+* `thin` — 100;
+* `extralight` — 200;
+* `light` — 300;
+* `regular` — 400;
+* `medium` — 500;
+* `semibold` — 600;
+* `bold` — 700;
+* `extrabold`, `heavy` — 800;
+* `black` — 900;
 
-Подключение шрифта произойдет автоматически. Файл который будет импортироваться в css находится тут `tmp/fonts-generated.scss`.
+Подключение шрифта произойдет автоматически. Файл который будет импортироваться в scss находится тут `tmp/fonts-generated.scss`.
 
-Пример использование в css
-```
+Пример использование в scss
+```scss
 h1 { 
   font-family: 'Roboto';
   font-weight: 100;
@@ -193,14 +192,13 @@ inkShio-start-project
 │   |   └── svg             # векторные иконки
 ├── build                   # папка с результатом
 ├── tmp                     # папка для временных файлов
-├── .babelrc                # настройки babel
 ├── .editorconfig           # настройки для IDE
 ├── .eslintrc               # настройки eslint
 ├── .gitignore              # запрет на отслеживание файлов git'ом
 ├── .ncurc.json             # запрет на обновление пакетов
 ├── .pug-lintrc             # настройки puglint
 ├── .stylelintrc            # настройки stylelint
-├── gulpfile.babel.js       # настройки gulp
+├── gulpfile.js             # настройки gulp
 ├── package.json            # список зависимостей
 └── README.md               # документация сборки
 ```

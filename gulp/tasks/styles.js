@@ -6,12 +6,11 @@ import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
+import gulpSass from 'gulp-sass';
 import sassGlob from 'gulp-sass-glob';
-import webpcss from 'gulp-webpcss';
+import * as dartSass from 'sass';
 import config from '../config.js';
 import { stream } from './server.js';
-import gulpSass from 'gulp-sass';
-import * as dartSass from 'sass';
 
 const sass = gulpSass(dartSass);
 
@@ -25,12 +24,9 @@ export const scssBuild = () => (
 			includePaths: ['./node_modules'],
 			outputStyle: 'expanded'
 		}))
-		.pipe(webpcss({
-			webpClass: '.webp',
-			noWebpClass: '.no-webp'
-		}))
 		.pipe(gulpif(config.isProd, autoprefixer({
-			grid: true
+			grid: true,
+			overrideBrowserslist: ['> 1%', 'last 5 versions', 'not dead']
 		})))
 		.pipe(gulpif(config.isProd, gcmq()))
 		.pipe(gulpif(config.isProd, cleanCSS({

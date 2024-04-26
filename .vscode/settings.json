@@ -1,25 +1,18 @@
 {
-	"editor.formatOnSave": true,
-	"editor.codeActionsOnSave": {
-		"source.fixAll": true,
-		"source.sortImports": true
-	},
-	"scss.validate": false,
-	"less.validate": false,
-	"css.validate": false,
-	"stylelint.enable": true,
-	"stylelint.validate": [
-		"css",
-		"less",
-		"postcss",
-		"sass",
-		"scss"
-	],
-	"puglint.enable": true,
-	"cssVariables.lookupFiles": [
-		"**/*.css",
-		"**/*.scss",
-		"**/*.sass",
-		"**/*.less"
-	]
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.sortImports": "explicit"
+  },
+  "puglint.enable": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.validate": [
+    "css",
+    "less",
+    "scss"
+  ],
+  "eslint.enable": true
 }

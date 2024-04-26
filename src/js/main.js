@@ -1,11 +1,10 @@
 /* Helpers */
-import documentReady from './helpers/documentReady';
-import isWebp from './helpers/isWebp';
-import svgIconLoading from './helpers/svgIconLoading';
-import vars from './helpers/vars';
+import documentReady from './helpers/documentReady.js';
+import isWebp from './helpers/isWebp.js';
+import svgIconLoading from './helpers/svgIconLoading.js';
+import vars from './helpers/vars.js';
 
 /* Libs */
-//import 'focus-visible';
 import $ from 'jquery';
 
 /* Components */
