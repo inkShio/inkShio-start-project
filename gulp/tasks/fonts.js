@@ -10,7 +10,7 @@ import { reload } from './server.js';
 import { scssBuild } from './styles.js';
 
 export const otfToTtf = () => (
-	gulp.src(`${config.paths.fonts.app}/*.otf`)
+	gulp.src(`${config.paths.fonts.app}/*.otf`, { encoding: false })
 		.pipe(plumber())
 		.pipe(fonter({
 			formats: ['ttf']
@@ -22,7 +22,7 @@ export const otfToTtf = () => (
 );
 
 export const ttfToWoff = () => (
-	gulp.src([`${config.paths.root.tmp}/*.ttf`, `${config.paths.fonts.app}/*.ttf`])
+	gulp.src([`${config.paths.root.tmp}/*.ttf`, `${config.paths.fonts.app}/*.ttf`], { encoding: false })
 		.pipe(plumber())
 		.pipe(fonter({
 			formats: ['woff']
@@ -34,7 +34,7 @@ export const ttfToWoff = () => (
 );
 
 export const ttfToWoff2 = () => (
-	gulp.src([`${config.paths.root.tmp}/*.ttf`, `${config.paths.fonts.app}/*.ttf`])
+	gulp.src([`${config.paths.root.tmp}/*.ttf`, `${config.paths.fonts.app}/*.ttf`], { encoding: false })
 		.pipe(plumber())
 		.pipe(ttf2woff2())
 		.pipe(debug({

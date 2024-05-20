@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import debug from 'gulp-debug';
 import plumber from 'gulp-plumber';
+import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
 import config from '../config.js';
 import { reload } from './server.js';
@@ -13,6 +14,13 @@ export const scriptsBuild = () => (
 			output: {
 				filename: 'scripts.min.js',
 			},
+			plugins: [
+				new webpack.ProvidePlugin({
+					$: 'jquery',
+					jQuery: 'jquery',
+					'window.jQuery': 'jquery'
+				}),
+			],
 			module: {
 				rules: [{
 					test: /\.m?js$/,
@@ -22,7 +30,7 @@ export const scriptsBuild = () => (
 						options: {
 							presets: [
 								['@babel/preset-env', {
-									targets: "defaults"
+									targets: 'defaults'
 								}]
 							]
 						}
