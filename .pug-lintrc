@@ -1,6 +1,6 @@
 {
 	"disallowAttributeConcatenation": true,
-	"disallowAttributeTemplateString": true,
+	"disallowAttributeTemplateString": null,
 	"disallowBlockExpansion": true,
 	"disallowClassAttributeWithStaticValue": true,
 	"disallowClassLiteralsBeforeAttributes": null,
