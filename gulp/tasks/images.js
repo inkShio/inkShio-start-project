@@ -21,30 +21,18 @@ const copyImages = () => (
 				optimizationLevel: 5
 			}),
 			svgo({
-				plugins: [{
-					removeViewBox: false
-				},
-				{
-					removeUnusedNS: false
-				},
-				{
-					removeUselessStrokeAndFill: false
-				},
-				{
-					cleanupIDs: false
-				},
-				{
-					removeComments: true
-				},
-				{
-					removeEmptyAttrs: true
-				},
-				{
-					removeEmptyText: true
-				},
-				{
-					collapseGroups: true
-				}
+				plugins: [
+					{
+						name: 'preset-default',
+						params: {
+							overrides: {
+								cleanupIds: false,
+								removeUselessStrokeAndFill: false,
+								removeViewBox: false,
+								removeUnusedNS: false,
+							},
+						},
+					},
 				],
 			}),
 		], {
