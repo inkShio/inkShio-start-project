@@ -103,9 +103,8 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
     "ink-reset-scss": "^2.0.0",
     "jquery": "^3.7.1",
-    "sass-mq": "^6.0.0"
+    "sass-mq": "^7.0.0-beta.1"
   }
 }

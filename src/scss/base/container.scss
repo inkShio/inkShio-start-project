@@ -1,4 +1,4 @@
-// @use "../../../node_modules/sass-mediaqueries/media-queries";
+@use '../../../node_modules/sass-mq/mq';
 
 .container {
 	width: 100%;
@@ -8,8 +8,8 @@
 	padding-right: 24px;
 	padding-left: 24px;
 
-	// @include media-queries.min-screen(style.$bp-md) {
-	// 	padding-right: 48px;
-	// 	padding-left: 48px;
-	// }
+	@include mq.mq(md) {
+		padding-right: 48px;
+		padding-left: 48px;
+	}
 }

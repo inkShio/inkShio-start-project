@@ -1,32 +1,5 @@
-/*
-	Поможем scss распознавать где нужно производить математическое деление, а где не надо
-	https://sass-lang.com/documentation/breaking-changes/slash-div
-
-	margin: math.div(6px, 2) - производим деление
-	результат - margin: 3px;
-
-	grid-row: list.slash (1, 3) - НЕ производим деление
-	результат - grid-row: 1 / 3;
-*/
-@use 'sass:list';
-@use 'sass:math';
-
-/*
-	Создание карт и доступ к содержащимся в них значениям
-*/
-@use 'sass:map';
-
-/*
-	Bootstrap сетка
-	https://getbootstrap.com/docs/5.1/layout/grid/
-
-	$grid-columns - количество столбцов сетки
-	$grid-gutter-width - ширина промежутков между столбцами
-	$grid-breakpoints - контрольные точки
-*/
-$grid-columns: 12;
-$grid-gutter-width: 0;
-$grid-breakpoints: (
+// Контрольные точки
+$breakpoints: (
 	xs: 0,
 	sm: 576px,
 	md: 768px,
@@ -35,32 +8,20 @@ $grid-breakpoints: (
 	xxl: 1400px
 );
 
-/*
-	Отступы между столбцами
-	https://getbootstrap.com/docs/5.1/layout/gutters/
-
-	$spacer - размер желоба
-	$gutters - желоба
-*/
-$spacer: 16px;
-$gutters: (
-	0: 0,
-	1: $spacer * 0.25,
-	2: $spacer * 0.5,
-	3: $spacer,
-	4: $spacer * 1.5,
-	5: $spacer * 3,
+// sass-mq
+@use '../../node_modules/sass-mq/mq' with ($breakpoints: $breakpoints,
+	$media-type: 'screen',
+	// Uncomment for debugging breakpoints
+	// $show-breakpoints: (sm, md, lg, ...),
 );
 
 /*
-	Делайем короткие названия переменных Bootstrap сетки
+	Bootstrap сетка (грузится через libs)
+	Переопределяем переменные
 */
-$bp-xs: map.get($grid-breakpoints, 'xs');
-$bp-sm: map.get($grid-breakpoints, 'sm');
-$bp-md: map.get($grid-breakpoints, 'md');
-$bp-lg: map.get($grid-breakpoints, 'lg');
-$bp-xl: map.get($grid-breakpoints, 'xl');
-$bp-xxl: map.get($grid-breakpoints, 'xxl');
+@use 'libs/bootstrap/variables' with ($spacer: 16px,
+	$grid-breakpoints: $breakpoints,
+	$grid-gutter-width: 0);
 
 /*
 	Переменные, функции, миксины, плейсхолдеры,
@@ -68,25 +29,18 @@ $bp-xxl: map.get($grid-breakpoints, 'xxl');
 	сброс стилей
 */
 @use 'helpers';
-@use '../../node_modules/sass-mediaqueries/media-queries';
 @use '../../tmp/fonts-generated';
 @use '../../node_modules/ink-reset-scss/reset';
 
-/* Bootstrap */
-// @import './../../node_modules/bootstrap/scss/functions';
-// @import './../../node_modules/bootstrap/scss/variables';
-// @import './../../node_modules/bootstrap/scss/mixins';
-// @import './../../node_modules/bootstrap/scss/grid';
-
-/* Base */
+// Base
 @use 'base';
 
-/* Utilities */
+// Utilities
 @use 'utilities';
 
-/* Libs */
+// Libs
 @use 'libs';
 
-/* Blocks */
+// Blocks
 @use '../blocks/components';
 @use '../blocks/modules';

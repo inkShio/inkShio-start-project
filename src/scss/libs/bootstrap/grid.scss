@@ -1,0 +1,41 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// Row
+//
+// Rows contain your columns.
+
+// :root {
+// 	@each $name, $value in v.$grid-breakpoints {
+// 		--#{v.$prefix}breakpoint-#{$name}: #{$value};
+// 	}
+// }
+
+@if v.$enable-grid-classes {
+	.row {
+		@include m.make-row();
+
+		>* {
+			@include m.make-col-ready();
+		}
+	}
+}
+
+@if v.$enable-cssgrid {
+	.grid {
+		display: grid;
+		grid-template-rows: repeat(var(--#{v.$prefix}rows, 1), 1fr);
+		grid-template-columns: repeat(var(--#{v.$prefix}columns, #{v.$grid-columns}), 1fr);
+		gap: var(--#{v.$prefix}gap, #{v.$grid-gutter-width});
+
+		@include m.make-cssgrid();
+	}
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if v.$enable-grid-classes {
+	@include m.make-grid-columns();
+}
