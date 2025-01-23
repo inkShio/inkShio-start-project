@@ -15,51 +15,81 @@
 //- 	}
 
 //-
-	* Изображение с использованием webp
+	* Информация об изображении
 	*
-	* @param {string} path путь к файлу
+	* @param {string} path путь к изображению
+	*/
+
+-
+	function imageInfo(path) {
+		const fileNameExtension = path.replace(/^.*[\\\/]/, ''); // test.jpg
+		const filePath = path.replace(fileNameExtension, ''); // ./img/
+		const fileFindExtension = fileNameExtension.split('.');
+		const fileLength = fileFindExtension.length;
+		const fileExtension = fileFindExtension[fileLength - 1]; // jpg
+		const fileName = fileNameExtension.replace('.' + fileExtension, ''); // test
+		let finalFileExtension = '';
+		let info = {
+			path: filePath,
+			name: fileName,
+			ext: fileExtension
+		};
+
+		switch (fileExtension) {
+			case 'jpg':
+			case 'jpeg':
+			case 'jfif':
+			case 'pjpeg':
+			case 'pjp':
+				finalFileExtension = 'image/jpeg';
+				break;
+			case 'png':
+				finalFileExtension = 'image/png';
+				break;
+			case 'avif':
+				finalFileExtension = 'image/avif';
+				break;
+			case 'gif':
+				finalFileExtension = 'image/gif';
+				break;
+			case 'svg':
+				finalFileExtension = 'image/svg+xml';
+				break;
+			case 'webp':
+				finalFileExtension = 'image/webp';
+				break;
+		}
+		info.type = finalFileExtension;
+
+		return info;
+	}
+
+//-
+	* Изображение с использованием picture
+	*
+	* @param {string} className класс/модификатор
+	* @param {string} image путь к изображению, будет взят указанный файл и заменено расширение на webp
+	* @param {array} list_images список путей к изображению, первый объект в списке берется как основной
 	* @param {string} alt описание
 	*/
 
-mixin webp(options)
+mixin picture(options, attr)
 	- var DEFAULT_OPTIONS = {};
-	- DEFAULT_OPTIONS.path = ''
+	- DEFAULT_OPTIONS.className = ''
+	- DEFAULT_OPTIONS.image = ''
+	- DEFAULT_OPTIONS.list_images = []
 	- DEFAULT_OPTIONS.alt = ''
 
 	- options = Object.assign({}, DEFAULT_OPTIONS, options || {});
 
-	- let fileNameExtension = options.path.replace(/^.*[\\\/]/, ''); // test.jpg
-	- let filePath = options.path.replace(fileNameExtension, ''); // ./img/
-	- let fileFindExtension = fileNameExtension.split('.');
-	- let fileLength = fileFindExtension.length;
-	- let fileExtension = fileFindExtension[fileLength - 1]; // jpg
-	- let fileName = fileNameExtension.replace('.' + fileExtension, ''); // test
-
-	case fileExtension
-		when 'jpg'
-		when 'jpeg'
-		when 'jfif'
-		when 'pjpeg'
-		when 'pjp'
-			- finalFileExtension = 'image/jpeg';
-			- break
-		when 'png'
-			- finalFileExtension = 'image/png';
-			- break
-		//- when 'avif'
-		//- 	- let finalFileExtension = 'image/avif';
-		//- 	- break
-		//- when 'gif'
-		//- 	- let finalFileExtension = 'image/gif';
-		//- 	- break
-		//- when 'svg'
-		//- 	- let finalFileExtension = 'image/svg+xml';
-		//- 	- break
-		//- when 'webp'
-		//- 	- let finalFileExtension = 'image/webp';
-		//- 	- break
-
 	picture
-		source(type='image/webp', srcset= `${filePath + fileName}.webp`)
-		source(type= finalFileExtension, srcset= options.path)
-		img(src= options.path, alt= options.alt)
+		if options.image && options.list_images.length === 0
+			- const imageMeta = imageInfo(options.image);
+			source(type='image/webp', srcset= `${imageMeta.path}${imageMeta.name}.webp`)
+			img(class= options.className, src= options.image, alt= options.alt)
+		else if !options.image && options.list_images.length > 0
+			each item, index in options.list_images
+				if index != 0
+					- const imageMeta = imageInfo(item);
+					source(type= imageMeta.type, srcset= item)
+			img(class= options.className, src= options.list_images[0], alt= options.alt)
