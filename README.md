@@ -1,3 +1,5 @@
+[![Node.js](https://img.shields.io/badge/node_js-v20.18.2-orange)](https://nodejs.org/en/download)
+
 # inkShio-start-project
 ## Установка
 - установите [NodeJS](https://nodejs.org/en/)
