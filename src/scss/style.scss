@@ -23,13 +23,13 @@ $breakpoints: (
 	$grid-breakpoints: $breakpoints,
 	$grid-gutter-width: 0);
 
-/*
-	Переменные, функции, миксины, плейсхолдеры,
-	миксины медиа запросов, сгенерированный файл шрифтов,
-	сброс стилей
-*/
-@use 'helpers';
+// CSS переменные
+@use 'helpers/root';
+
+// Сгенерированный файл шрифтов
 @use '../../tmp/fonts-generated';
+
+// Сброс стилей
 @use '../../node_modules/ink-reset-scss/reset';
 
 // Base

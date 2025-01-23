@@ -71,10 +71,11 @@ html(lang='ru-RU', prefix='og: http://ogp.me/ns#')
 			.layout
 				.layout__header
 					include ../../blocks/modules/header/header
-				.layout__body.container.row
-					main.layout__content.col-12.col-lg-9
-						block content
-					aside.layout__sidebar.col-12.col-lg-3 SIDEBAR
+				.layout__body.container
+					.layout__body-inner.row
+						main.layout__content.col-12.col-lg-9
+							block content
+						aside.layout__sidebar.col-12.col-lg-3 SIDEBAR
 				.layout__footer
 					include ../../blocks/modules/footer/footer
 		script(src='js/scripts.min.js')
