@@ -86,7 +86,7 @@ each item in employees
 
 Подключена [bootstrap сетка](https://getbootstrap.com/docs/5.3/layout/grid/).
 
-Для медиазапросов используется библиотека [sass-mediaqueries](https://github.com/rafalbromirski/sass-mediaqueries).
+Для медиазапросов используется библиотека [sass-mq](https://github.com/sass-mq/sass-mq).
 
 Что происходит при сборке:
 - Создание карт источников (`dev`)
@@ -192,11 +192,14 @@ inkShio-start-project
 │   |   └── svg             # векторные иконки
 ├── build                   # папка с результатом
 ├── tmp                     # папка для временных файлов
+├── .babelrc                # настройка babel
 ├── .editorconfig           # настройки для IDE
+├── .eslintignore           # игнорировать eslint в указанных файлах/папках
 ├── .eslintrc               # настройки eslint
 ├── .gitignore              # запрет на отслеживание файлов git'ом
 ├── .ncurc.json             # запрет на обновление пакетов
 ├── .pug-lintrc             # настройки puglint
+├── .stylelintignore        # игнорировать stylelint в указанных файлах/папках
 ├── .stylelintrc            # настройки stylelint
 ├── gulpfile.js             # настройки gulp
 ├── package.json            # список зависимостей
