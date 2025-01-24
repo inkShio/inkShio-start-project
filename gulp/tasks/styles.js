@@ -7,7 +7,6 @@ import gulpif from 'gulp-if';
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
 import gulpSass from 'gulp-sass';
-import sassGlob from 'gulp-sass-glob';
 import * as dartSass from 'sass';
 import config from '../config.js';
 import { stream } from './server.js';
@@ -19,7 +18,6 @@ export const scssBuild = () => (
 		sourcemaps: config.isDev
 	})
 		.pipe(plumber())
-		.pipe(sassGlob())
 		.pipe(sass({
 			includePaths: ['./node_modules'],
 			outputStyle: 'expanded'
