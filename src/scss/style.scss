@@ -1,15 +1,7 @@
-// Контрольные точки
-$breakpoints: (
-	xs: 0,
-	sm: 576px,
-	md: 768px,
-	lg: 992px,
-	xl: 1200px,
-	xxl: 1400px
-);
+@use 'helpers/variables' as v;
 
 // sass-mq
-@use '../../node_modules/sass-mq/mq' with ($breakpoints: $breakpoints,
+@use '../../node_modules/sass-mq/mq' with ($breakpoints: v.$breakpoints,
 	$media-type: 'screen',
 	// Uncomment for debugging breakpoints
 	// $show-breakpoints: (sm, md, lg, ...),
@@ -20,7 +12,7 @@ $breakpoints: (
 	Переопределяем переменные
 */
 @use 'libs/bootstrap/variables' with ($spacer: 16px,
-	$grid-breakpoints: $breakpoints,
+	$grid-breakpoints: v.$breakpoints,
 	$grid-gutter-width: 0);
 
 // CSS переменные

@@ -37,7 +37,7 @@ export const pugBuild = (cb) => {
 				})))
 				.pipe(gulpif(config.isProd, posthtml([
 					posthtmlAttrsSorter({
-						order: ['class', 'id', 'name', 'data-.+', 'src', 'for', 'type', 'href', 'value', 'title', 'alt', 'role', 'aria-.+']
+						order: ['class', 'id', 'name', 'data-.+', 'src', 'for', 'type', 'inputmode', 'href', 'value', 'title', 'alt', 'role', 'aria-.+']
 					})
 				], {})))
 				.pipe(gulpif(config.isProd, versionNumber({
