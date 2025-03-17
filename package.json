@@ -1,6 +1,6 @@
 {
   "name": "inkshio-start-project",
-  "version": "4.2.0",
+  "version": "5.1.0",
   "description": "Сборка проекта",
   "main": "gulpfile.js",
   "type": "module",
