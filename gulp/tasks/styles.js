@@ -1,17 +1,31 @@
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import gulp from 'gulp';
-import autoprefixer from 'gulp-autoprefixer';
-import cleanCSS from 'gulp-clean-css';
 import debug from 'gulp-debug';
-import gcmq from 'gulp-group-css-media-queries';
 import gulpif from 'gulp-if';
 import plumber from 'gulp-plumber';
+import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 import gulpSass from 'gulp-sass';
+import sortMediaQueries from 'postcss-sort-media-queries';
 import * as dartSass from 'sass';
 import config from '../config.js';
 import { stream } from './server.js';
 
 const sass = gulpSass(dartSass);
+
+const postCssPlugins = [
+	autoprefixer({
+		grid: true,
+		overrideBrowserslist: ['> 1%', 'last 5 versions', 'not dead']
+	}),
+	sortMediaQueries({
+		sort: 'mobile-first'
+	}),
+	cssnano({
+		preset: 'default',
+	})
+];
 
 export const scssBuild = () => (
 	gulp.src(config.paths.scss.app, {
@@ -22,14 +36,7 @@ export const scssBuild = () => (
 			includePaths: ['./node_modules'],
 			outputStyle: 'expanded'
 		}))
-		.pipe(gulpif(config.isProd, autoprefixer({
-			grid: true,
-			overrideBrowserslist: ['> 1%', 'last 5 versions', 'not dead']
-		})))
-		.pipe(gulpif(config.isProd, gcmq()))
-		.pipe(gulpif(config.isProd, cleanCSS({
-			level: 2
-		})))
+		.pipe(gulpif(config.isProd, postcss(postCssPlugins)))
 		.pipe(rename({
 			suffix: '.min'
 		}))
